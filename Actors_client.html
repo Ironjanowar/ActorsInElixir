@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>The Actors Model</title>
+<meta name="author" content="(@Cuwano)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/ironjanowar/reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/ironjanowar/reveal.js/css/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="./acm.css"/>
+<link rel="stylesheet" href="file:///home/ironjanowar/reveal.js/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/ironjanowar/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="EmacsFTW.">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">The Actors Model</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-20 lun 17:05</p>
+</section>
+
+
+<section>
+<section id="slide-org2c04c2c">
+<h2 id="org2c04c2c">The Actors Model</h2>
+<p>
+and what can we do with it!
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgd4b6057">
+<h2 id="orgd4b6057">What's an actor?</h2>
+<ul>
+<li>Primitive unit of computation</li>
+<li>Receives messages</li>
+<li>Does something with the received message</li>
+<li>Sends messages</li>
+
+</ul>
+</section>
+<section id="slide-org6237df9">
+<h3 id="org6237df9">Actors System</h3>
+
+<div class="figure">
+<p><img src="./data/actors1.png" alt="actors1.png" />
+</p>
+</div>
+</section>
+<section id="slide-org8ab385b">
+<h3 id="org8ab385b">Mailbox</h3>
+<p>
+This means that it can only process one message at a time
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgdee93c7">
+<h2 id="orgdee93c7">Let's see an example!</h2>
+<div class="outline-text-2" id="text-orgdee93c7">
+</div></section>
+<section id="slide-org80767cf">
+<h3 id="org80767cf">Everything in Elixir/Erlang is an Actor</h3>
+</section>
+<section id="slide-org4e60b25">
+<h3 id="org4e60b25">So let's create an Actor!</h3>
+
+<div class="figure">
+<p><img src="./data/elixir_example1.png" alt="elixir_example1.png" />
+</p>
+</div>
+</section>
+<section id="slide-orgb281692">
+<h3 id="orgb281692">What's all this?!</h3>
+</section>
+<section id="slide-org4b06178">
+<h3 id="org4b06178">&amp;spawn/1</h3>
+<div class="org-src-container">
+
+<pre><code class="alchemist" >spawn(fn -&gt; :ok end)
+
+spawn(fn -&gt; IO.puts "Patata" end)
+</code></pre>
+</div>
+
+<p>
+Creates a process that executes a given function
+</p>
+</section>
+<section id="slide-orgc9fc5df">
+<h3 id="orgc9fc5df">receive</h3>
+<div class="org-src-container">
+
+<pre><code class="alchemist" >receive do
+  {pid, :ping} -&gt; send(pid, :pong)
+end
+</code></pre>
+</div>
+</section>
+<section id="slide-org8e730ac">
+<h3 id="org8e730ac">&amp;send/2</h3>
+<div class="org-src-container">
+
+<pre><code class="alchemist" ># send(who, what)
+
+send(pid, :hello)
+
+send(pid, {self(), :ping})
+</code></pre>
+</div>
+</section>
+<section id="slide-org03c9e27">
+<h3 id="org03c9e27">&amp;flush/0</h3>
+<p>
+Let us see our inbox
+</p>
+
+
+<div class="figure">
+<p><img src="./data/wait_what.gif" alt="wait_what.gif" />
+</p>
+</div>
+</section>
+<section id="slide-org44fcf3c">
+<h3 id="org44fcf3c">iex is an Actor too!!</h3>
+
+<div class="figure">
+<p><img src="./data/iex_actor.png" alt="iex_actor.png" />
+</p>
+</div>
+</section>
+<section id="slide-org4329777">
+<h3 id="org4329777">EVERYTHING IS AN ACTOR!</h3>
+<p>
+That means that we can message anything!
+</p>
+
+<p>
+The only thing that we need is a "mailbox direction" aka THE PROCESS ID
+</p>
+
+<p>
+(epic voice here)
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org9943b72">
+<h2 id="org9943b72">So&#x2026; a more interesting process</h2>
+<div class="org-src-container">
+
+<pre><code class="alchemist" >defmodule InterestingProcess do
+  def start() do
+    pid = spawn(&amp;loop/0)
+
+    {:ok, pid}
+  end
+
+  def loop() do
+    receive do
+      {pid, :ping} -&gt;
+        send pid, {self(), :pong}
+        loop()
+      {pid, :stop} -&gt;
+        send pid, "Okkay I'll stop"
+      {pid, _} -&gt;
+        send pid, {self(), "Dude..."}
+        loop()
+      _ -&gt; loop()
+    end
+  end
+end
+</code></pre>
+</div>
+</section>
+<section id="slide-org2ffd570">
+<h3 id="org2ffd570">Let's play with this little friend here!</h3>
+<p>
+First of all there is a &amp;start/0 function that rings a bell
+</p>
+<div class="org-src-container">
+
+<pre><code class="alchemist" >def start() do
+  pid = spawn(&amp;loop/0)
+
+  {:ok, pid}
+end
+</code></pre>
+</div>
+</section>
+<section id="slide-org3776483">
+<h3 id="org3776483">And a &amp;loop/0 function</h3>
+<p>
+This function has a receive in it
+</p>
+<div class="org-src-container">
+
+<pre><code class="alchemist" >def loop() do
+  receive do
+    {pid, :ping} -&gt;
+      send pid, {self(), :pong}
+      loop()
+    {pid, :stop} -&gt;
+      send pid, "Okkay I'll stop"
+    {pid, _} -&gt;
+      send pid, {self(), "Dude..."}
+      loop()
+    _ -&gt; loop()
+  end
+end
+</code></pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///home/ironjanowar/reveal.js/lib/js/head.min.js"></script>
+<script src="file:///home/ironjanowar/reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'h/v',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+width: 1200,
+height: 800,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: null, // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///home/ironjanowar/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/ironjanowar/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/ironjanowar/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///home/ironjanowar/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: '', async: true },
+ { src: 'file:///home/ironjanowar/reveal.js/plugin/multiplex/client.js', async: true },
+ { src: 'file:///home/ironjanowar/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///home/ironjanowar/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>

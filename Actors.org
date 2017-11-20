@@ -1,0 +1,133 @@
+#+Title: The Actors Model
+#+Author: @Cuwano
+#+Email:SexyACM@BestAsocEUW.io
+
+#+LANGUAGE: es
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 8.3.2)
+#+LATEX_CLASS_OPTIONS: [a4paper,hidelinks]
+
+#+LATEX_CLASS_OPTIONS: [...,hidelinks]
+
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_rolling_links:nil reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_slide_number:h/v
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: linear
+#+REVEAL_THEME: serif
+#+REVEAL_HLEVEL: 1
+#+REVEAL_EXTRA_CSS: ./acm.css
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="EmacsFTW.">
+#+REVEAL_PLUGINS: (markdown notes zoom multiplex classList highlight)
+
+
+#+OPTIONS: toc:nil
+# #+OPTIONS: reveal_single_file:t
+
+# Read: https://github.com/yjwen/org-reveal/
+
+
+* The Actors Model
+and what can we do with it!
+* What's an actor?
+- Primitive unit of computation
+- Receives messages
+- Does something with the received message
+- Sends messages
+** Actors System
+[[./data/actors1.png]]
+** Mailbox
+This means that it can only process one message at a time
+* Let's see an example!
+** Everything in Elixir/Erlang is an Actor
+** So let's create an Actor!
+[[./data/elixir_example1.png]]
+** What's all this?!
+** &spawn/1
+#+BEGIN_SRC alchemist
+  spawn(fn -> :ok end)
+
+  spawn(fn -> IO.puts "Patata" end)
+#+END_SRC
+
+Creates a process that executes a given function
+** receive
+#+BEGIN_SRC alchemist
+  receive do
+    {pid, :ping} -> send(pid, :pong)
+  end
+#+END_SRC
+** &send/2
+#+BEGIN_SRC alchemist
+  # send(who, what)
+
+  send(pid, :hello)
+
+  send(pid, {self(), :ping})
+#+END_SRC
+** &flush/0
+Let us see our inbox
+
+[[./data/wait_what.gif]]
+** iex is an Actor too!!
+[[./data/iex_actor.png]]
+** EVERYTHING IS AN ACTOR!
+That means that we can message anything!
+
+The only thing that we need is a "mailbox direction" aka THE PROCESS ID
+
+(epic voice here)
+* So... a more interesting process
+#+BEGIN_SRC alchemist
+  defmodule InterestingProcess do
+    def start() do
+      pid = spawn(&loop/0)
+
+      {:ok, pid}
+    end
+
+    def loop() do
+      receive do
+        {pid, :ping} ->
+          send pid, {self(), :pong}
+          loop()
+        {pid, :stop} ->
+          send pid, "Okkay I'll stop"
+        {pid, _} ->
+          send pid, {self(), "Dude..."}
+          loop()
+        _ -> loop()
+      end
+    end
+  end
+#+END_SRC
+** Let's play with this little friend here!
+First of all there is a &start/0 function that rings a bell
+#+BEGIN_SRC alchemist
+  def start() do
+    pid = spawn(&loop/0)
+
+    {:ok, pid}
+  end
+#+END_SRC
+** And a &loop/0 function
+This function has a receive in it
+#+BEGIN_SRC alchemist
+  def loop() do
+    receive do
+      {pid, :ping} ->
+        send pid, {self(), :pong}
+        loop()
+      {pid, :stop} ->
+        send pid, "Okkay I'll stop"
+      {pid, _} ->
+        send pid, {self(), "Dude..."}
+        loop()
+      _ -> loop()
+    end
+  end
+#+END_SRC
