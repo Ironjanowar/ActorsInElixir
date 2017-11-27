@@ -37,7 +37,7 @@ Is basically processing things at the same time.
 [[./data/parallelism.png]]
 
 ** Concurrency
-Process multiple things
+Process multiple things with a common resource.
 
 [[./data/concurrency.png]]
 
