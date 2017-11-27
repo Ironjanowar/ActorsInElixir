@@ -35,8 +35,12 @@ What's all this?
 ** Parallelism
 Is basically processing things at the same time.
 
+[[./data/parallelism.png]]
+
 ** Concurrency
 Process multiple things
+
+[[./data/concurrency.png]]
 
 * What can an Actor do?
 - Receive messages

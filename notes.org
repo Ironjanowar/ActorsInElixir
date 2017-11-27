@@ -1,7 +1,8 @@
 * Concurrency and Parallelism
 ** Parallelism
-Processing things at the same time. Each process has its own data source.
+Processing things at the same time, without any resource dependency.
 ** Concurrency
+Processing things at the same time, sharing a resource.
 * What can an Actor do?
 ** Actor System
 What is mailbox?
