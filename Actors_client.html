@@ -28,26 +28,25 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">The Actor Model</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-27 Mon 19:34</p>
+<section id="sec-title-slide"><h1 class="title">The Actor Model</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-27 Mon 19:36</p>
 </section>
 
-
 <section>
-<section id="slide-org38d8faa">
-<h2 id="org38d8faa">Concurrency and Parallelism</h2>
+<section id="slide-org2abaec8">
+<h2 id="org2abaec8">Concurrency and Parallelism</h2>
 <p>
 What's all this?
 </p>
 </section>
-<section id="slide-orgff313fc">
-<h3 id="orgff313fc">Parallelism</h3>
+<section id="slide-orgdaa85e0">
+<h3 id="orgdaa85e0">Parallelism</h3>
 <p>
 Is basically processing things at the same time.
 </p>
 
 </section>
-<section id="slide-orgf4a22be">
-<h3 id="orgf4a22be">Concurrency</h3>
+<section id="slide-orge1bd25f">
+<h3 id="orge1bd25f">Concurrency</h3>
 <p>
 Process multiple things
 </p>
@@ -55,8 +54,8 @@ Process multiple things
 </section>
 </section>
 <section>
-<section id="slide-org19ac316">
-<h2 id="org19ac316">What can an Actor do?</h2>
+<section id="slide-orga4d3d59">
+<h2 id="orga4d3d59">What can an Actor do?</h2>
 <ul>
 <li>Receive messages</li>
 <li>Sends messages</li>
@@ -65,46 +64,46 @@ Process multiple things
 
 </ul>
 </section>
-<section id="slide-org140251d">
-<h3 id="org140251d">Actor System</h3>
+<section id="slide-orgd23d6a5">
+<h3 id="orgd23d6a5">Actor System</h3>
 
 <div class="figure">
 <p><img src="./data/actors1.png" alt="actors1.png" />
 </p>
 </div>
 </section>
-<section id="slide-org92ca794">
-<h3 id="org92ca794">Mailbox</h3>
+<section id="slide-org9d0ba18">
+<h3 id="org9d0ba18">Mailbox</h3>
 <p>
 This means that it can only process one message at a time
 </p>
 </section>
-<section id="slide-org38d98c6">
-<h3 id="org38d98c6">What do you mean by "changing its own behavior"?</h3>
+<section id="slide-org77f0455">
+<h3 id="org77f0455">What do you mean by "changing its own behavior"?</h3>
 </section>
 </section>
 <section>
-<section id="slide-orgc889e05">
-<h2 id="orgc889e05">Let's see an example!</h2>
-<div class="outline-text-2" id="text-orgc889e05">
+<section id="slide-orgb2112bb">
+<h2 id="orgb2112bb">Let's see an example!</h2>
+<div class="outline-text-2" id="text-orgb2112bb">
 </div>
 </section>
-<section id="slide-org4b3441d">
-<h3 id="org4b3441d">Everything in Elixir/Erlang is an Actor</h3>
+<section id="slide-orge6ca3d9">
+<h3 id="orge6ca3d9">Everything in Elixir/Erlang is an Actor</h3>
 </section>
-<section id="slide-orgbd66b86">
-<h3 id="orgbd66b86">So let's create an Actor!</h3>
+<section id="slide-org1085abb">
+<h3 id="org1085abb">So let's create an Actor!</h3>
 
 <div class="figure">
 <p><img src="./data/elixir_example1.png" alt="elixir_example1.png" />
 </p>
 </div>
 </section>
-<section id="slide-orgbbed391">
-<h3 id="orgbbed391">What's all this?!</h3>
+<section id="slide-org143ec51">
+<h3 id="org143ec51">What's all this?!</h3>
 </section>
-<section id="slide-org0967fd7">
-<h3 id="org0967fd7">&amp;spawn/1</h3>
+<section id="slide-orgafe4ebe">
+<h3 id="orgafe4ebe">&amp;spawn/1</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" >spawn(fn -> :ok end)
@@ -117,8 +116,8 @@ spawn(fn -> IO.puts "Patata" end)
 Creates a process that executes a given function
 </p>
 </section>
-<section id="slide-orgf24c242">
-<h3 id="orgf24c242">receive</h3>
+<section id="slide-org54c29c0">
+<h3 id="org54c29c0">receive</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" >receive do
@@ -127,8 +126,8 @@ end
 </code></pre>
 </div>
 </section>
-<section id="slide-orgac731ea">
-<h3 id="orgac731ea">&amp;send/2</h3>
+<section id="slide-org041388a">
+<h3 id="org041388a">&amp;send/2</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" ># send(who, what)
@@ -139,8 +138,8 @@ send(pid, {self(), :ping})
 </code></pre>
 </div>
 </section>
-<section id="slide-org64659b3">
-<h3 id="org64659b3">&amp;flush/0</h3>
+<section id="slide-org3ded51f">
+<h3 id="org3ded51f">&amp;flush/0</h3>
 <p>
 Let's see our inbox
 </p>
@@ -151,16 +150,16 @@ Let's see our inbox
 </p>
 </div>
 </section>
-<section id="slide-orgeefe2e0">
-<h3 id="orgeefe2e0">iex is an Actor too!!</h3>
+<section id="slide-orgd94e128">
+<h3 id="orgd94e128">iex is an Actor too!!</h3>
 
 <div class="figure">
 <p><img src="./data/iex_actor.png" alt="iex_actor.png" />
 </p>
 </div>
 </section>
-<section id="slide-org6de0528">
-<h3 id="org6de0528">EVERYTHING IS AN ACTOR!</h3>
+<section id="slide-org271551d">
+<h3 id="org271551d">EVERYTHING IS AN ACTOR!</h3>
 <p>
 That means that we can message anything!
 </p>
@@ -175,15 +174,15 @@ The only thing that we need is a "mailbox direction" aka THE PROCESS ID
 </section>
 </section>
 <section>
-<section id="slide-org998b36c">
-<h2 id="org998b36c">So&#x2026; a more interesting process</h2>
+<section id="slide-org725ed6a">
+<h2 id="org725ed6a">So&#x2026; a more interesting process</h2>
 <p>
 (@Cuwano swap to Emacs)
 </p>
 
 </section>
-<section id="slide-org682522e">
-<h3 id="org682522e">Let's play with this little friend here!</h3>
+<section id="slide-org95c7cf3">
+<h3 id="org95c7cf3">Let's play with this little friend here!</h3>
 <p>
 First of all there is a &amp;start/0 function that rings a bell
 </p>
@@ -197,8 +196,8 @@ end
 </code></pre>
 </div>
 </section>
-<section id="slide-org6c058c4">
-<h3 id="org6c058c4">&amp;loop/0 function</h3>
+<section id="slide-orgfd8f976">
+<h3 id="orgfd8f976">&amp;loop/0 function</h3>
 <p>
 This function has a receive in it
 </p>
@@ -225,8 +224,8 @@ end
 </section>
 </section>
 <section>
-<section id="slide-org32c2989">
-<h2 id="org32c2989">Some real stuff!</h2>
+<section id="slide-org24eecd1">
+<h2 id="org24eecd1">Some real stuff!</h2>
 <p>
 Metex!!
 </p>

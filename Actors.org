@@ -30,7 +30,6 @@
 
 # Read: https://github.com/yjwen/org-reveal/
 
-
 * Concurrency and Parallelism
 What's all this?
 ** Parallelism
