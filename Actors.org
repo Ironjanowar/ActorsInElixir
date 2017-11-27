@@ -24,7 +24,6 @@
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="EmacsFTW.">
 #+REVEAL_PLUGINS: (markdown notes zoom multiplex classList highlight)
 
-
 #+OPTIONS: toc:nil
 # #+OPTIONS: reveal_single_file:t
 
