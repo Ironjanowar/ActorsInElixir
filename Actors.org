@@ -1,4 +1,4 @@
-#+Title: The Actors Model
+#+Title: The Actor Model
 #+Author: @Cuwano
 #+Email:SexyACM@BestAsocEUW.io
 
@@ -31,7 +31,7 @@
 # Read: https://github.com/yjwen/org-reveal/
 
 
-* The Actors Model
+* The Actor Model
 and what can we do with it!
 * What's an actor?
 - Primitive unit of computation
