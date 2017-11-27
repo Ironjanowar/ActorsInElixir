@@ -28,18 +28,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">The Actor Model</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-27 Mon 20:08</p>
+<section id="sec-title-slide"><h1 class="title">The Actor Model</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-28 Tue 00:01</p>
 </section>
 
 <section>
-<section id="slide-org947b454">
-<h2 id="org947b454">Concurrency and Parallelism</h2>
+<section id="slide-org0e416a6">
+<h2 id="org0e416a6">Concurrency and Parallelism</h2>
 <p>
 What's all this?
 </p>
 </section>
-<section id="slide-orgb381e6c">
-<h3 id="orgb381e6c">Parallelism</h3>
+<section id="slide-orgc768ff1">
+<h3 id="orgc768ff1">Parallelism</h3>
 <p>
 Is basically processing things at the same time.
 </p>
@@ -51,8 +51,8 @@ Is basically processing things at the same time.
 </div>
 
 </section>
-<section id="slide-orgd0645b5">
-<h3 id="orgd0645b5">Concurrency</h3>
+<section id="slide-orga21c8db">
+<h3 id="orga21c8db">Concurrency</h3>
 <p>
 Process multiple things with a common resource.
 </p>
@@ -66,8 +66,8 @@ Process multiple things with a common resource.
 </section>
 </section>
 <section>
-<section id="slide-org3d19235">
-<h2 id="org3d19235">What can an Actor do?</h2>
+<section id="slide-org265d78c">
+<h2 id="org265d78c">What can an Actor do?</h2>
 <ul>
 <li>Receive messages</li>
 <li>Sends messages</li>
@@ -76,46 +76,46 @@ Process multiple things with a common resource.
 
 </ul>
 </section>
-<section id="slide-orgb96f71d">
-<h3 id="orgb96f71d">Actor System</h3>
+<section id="slide-org7e698ed">
+<h3 id="org7e698ed">Actor System</h3>
 
 <div class="figure">
 <p><img src="./data/actors1.png" alt="actors1.png" />
 </p>
 </div>
 </section>
-<section id="slide-org3ac9821">
-<h3 id="org3ac9821">Mailbox</h3>
+<section id="slide-org56841b2">
+<h3 id="org56841b2">Mailbox</h3>
 <p>
 This means that it can only process one message at a time
 </p>
 </section>
-<section id="slide-orgf7d7bf2">
-<h3 id="orgf7d7bf2">What do you mean by "changing its own behavior"?</h3>
+<section id="slide-org3522d7f">
+<h3 id="org3522d7f">What do you mean by "changing its own behavior"?</h3>
 </section>
 </section>
 <section>
-<section id="slide-org43a74c2">
-<h2 id="org43a74c2">Let's see an example!</h2>
-<div class="outline-text-2" id="text-org43a74c2">
+<section id="slide-org692b5e6">
+<h2 id="org692b5e6">Let's see an example!</h2>
+<div class="outline-text-2" id="text-org692b5e6">
 </div>
 </section>
-<section id="slide-org820d968">
-<h3 id="org820d968">Everything in Elixir/Erlang is an Actor</h3>
+<section id="slide-orge24d0f5">
+<h3 id="orge24d0f5">Everything in Elixir/Erlang is an Actor</h3>
 </section>
-<section id="slide-org1d1485d">
-<h3 id="org1d1485d">So let's create an Actor!</h3>
+<section id="slide-org1883de9">
+<h3 id="org1883de9">So let's create an Actor!</h3>
 
 <div class="figure">
 <p><img src="./data/elixir_example1.png" alt="elixir_example1.png" />
 </p>
 </div>
 </section>
-<section id="slide-orgf5f08f7">
-<h3 id="orgf5f08f7">What's all this?!</h3>
+<section id="slide-org25d4ba9">
+<h3 id="org25d4ba9">What's all this?!</h3>
 </section>
-<section id="slide-org2e4b3f4">
-<h3 id="org2e4b3f4">&amp;spawn/1</h3>
+<section id="slide-orga875f5b">
+<h3 id="orga875f5b">&amp;spawn/1</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" >spawn(fn -> :ok end)
@@ -128,8 +128,8 @@ spawn(fn -> IO.puts "Patata" end)
 Creates a process that executes a given function
 </p>
 </section>
-<section id="slide-org686cab3">
-<h3 id="org686cab3">receive</h3>
+<section id="slide-org664fb9c">
+<h3 id="org664fb9c">receive</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" >receive do
@@ -138,8 +138,8 @@ end
 </code></pre>
 </div>
 </section>
-<section id="slide-orgc06723e">
-<h3 id="orgc06723e">&amp;send/2</h3>
+<section id="slide-orgbc9bfa3">
+<h3 id="orgbc9bfa3">&amp;send/2</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" ># send(who, what)
@@ -150,8 +150,8 @@ send(pid, {self(), :ping})
 </code></pre>
 </div>
 </section>
-<section id="slide-org1c14463">
-<h3 id="org1c14463">&amp;flush/0</h3>
+<section id="slide-org376c108">
+<h3 id="org376c108">&amp;flush/0</h3>
 <p>
 Let's see our inbox
 </p>
@@ -162,16 +162,16 @@ Let's see our inbox
 </p>
 </div>
 </section>
-<section id="slide-orga42e312">
-<h3 id="orga42e312">iex is an Actor too!!</h3>
+<section id="slide-org243f9d3">
+<h3 id="org243f9d3">iex is an Actor too!!</h3>
 
 <div class="figure">
 <p><img src="./data/iex_actor.png" alt="iex_actor.png" />
 </p>
 </div>
 </section>
-<section id="slide-org4ccaf21">
-<h3 id="org4ccaf21">EVERYTHING IS AN ACTOR!</h3>
+<section id="slide-org350f05b">
+<h3 id="org350f05b">EVERYTHING IS AN ACTOR!</h3>
 <p>
 That means that we can message anything!
 </p>
@@ -186,15 +186,15 @@ The only thing that we need is a "mailbox direction" aka THE PROCESS ID
 </section>
 </section>
 <section>
-<section id="slide-org1a2e294">
-<h2 id="org1a2e294">So&#x2026; a more interesting process</h2>
+<section id="slide-orgb25ab27">
+<h2 id="orgb25ab27">So&#x2026; a more interesting process</h2>
 <p>
 (@Cuwano swap to Emacs)
 </p>
 
 </section>
-<section id="slide-org74324e5">
-<h3 id="org74324e5">Let's play with this little friend here!</h3>
+<section id="slide-org114120c">
+<h3 id="org114120c">Let's play with this little friend here!</h3>
 <p>
 First of all there is a &amp;start/0 function that rings a bell
 </p>
@@ -208,8 +208,8 @@ end
 </code></pre>
 </div>
 </section>
-<section id="slide-org6cdb869">
-<h3 id="org6cdb869">&amp;loop/0 function</h3>
+<section id="slide-org70b75d7">
+<h3 id="org70b75d7">&amp;loop/0 function</h3>
 <p>
 This function has a receive in it
 </p>
@@ -236,8 +236,8 @@ end
 </section>
 </section>
 <section>
-<section id="slide-org2f2fba0">
-<h2 id="org2f2fba0">Some real stuff!</h2>
+<section id="slide-org26f4f6a">
+<h2 id="org26f4f6a">Some real stuff!</h2>
 <p>
 Metex!!
 </p>
@@ -245,6 +245,20 @@ Metex!!
 <p>
 (@Cuwano swap again, but now to the Metex thing)
 </p>
+</section>
+</section>
+<section>
+<section id="slide-orgd3a231a">
+<h2 id="orgd3a231a">Moar examples</h2>
+<p>
+@daily_list_bot ♥
+</p>
+
+
+<div class="figure">
+<p><img src="./data/daily_bot.png" alt="daily_bot.png" />
+</p>
+</div>
 </section>
 </section>
 </div>
