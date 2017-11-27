@@ -1,0 +1,13 @@
+* Concurrency and Parallelism
+** Parallelism
+Processing things at the same time. Each process has its own data source.
+** Concurrency
+* What can an Actor do?
+** Actor System
+What is mailbox?
+What is a behaviour?
+** Mailbox
+Only processes one message at a time
+** What do you mean by "changing its own behavior"?
+We're gonna see it as which handlers are active at a time (or something like that).
+* Let's see an example

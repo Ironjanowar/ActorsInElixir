@@ -1,4 +1,4 @@
-#+Title: The Actors Model
+#+Title: The Actor Model
 #+Author: @Cuwano
 #+Email:SexyACM@BestAsocEUW.io
 
@@ -31,17 +31,24 @@
 # Read: https://github.com/yjwen/org-reveal/
 
 
-* The Actors Model
-and what can we do with it!
-* What's an actor?
-- Primitive unit of computation
-- Receives messages
-- Does something with the received message
+* Concurrency and Parallelism
+What's all this?
+** Parallelism
+Is basically processing things at the same time.
+
+** Concurrency
+Process multiple things
+
+* What can an Actor do?
+- Receive messages
 - Sends messages
-** Actors System
+- Change its own behavior
+- Create more Actors
+** Actor System
 [[./data/actors1.png]]
 ** Mailbox
 This means that it can only process one message at a time
+** What do you mean by "changing its own behavior"?
 * Let's see an example!
 ** Everything in Elixir/Erlang is an Actor
 ** So let's create an Actor!
@@ -70,7 +77,7 @@ Creates a process that executes a given function
   send(pid, {self(), :ping})
 #+END_SRC
 ** &flush/0
-Let us see our inbox
+Let's see our inbox
 
 [[./data/wait_what.gif]]
 ** iex is an Actor too!!
@@ -82,29 +89,8 @@ The only thing that we need is a "mailbox direction" aka THE PROCESS ID
 
 (epic voice here)
 * So... a more interesting process
-#+BEGIN_SRC alchemist
-  defmodule InterestingProcess do
-    def start() do
-      pid = spawn(&loop/0)
+(@Cuwano swap to Emacs)
 
-      {:ok, pid}
-    end
-
-    def loop() do
-      receive do
-        {pid, :ping} ->
-          send pid, {self(), :pong}
-          loop()
-        {pid, :stop} ->
-          send pid, "Okkay I'll stop"
-        {pid, _} ->
-          send pid, {self(), "Dude..."}
-          loop()
-        _ -> loop()
-      end
-    end
-  end
-#+END_SRC
 ** Let's play with this little friend here!
 First of all there is a &start/0 function that rings a bell
 #+BEGIN_SRC alchemist
@@ -114,20 +100,27 @@ First of all there is a &start/0 function that rings a bell
     {:ok, pid}
   end
 #+END_SRC
-** And a &loop/0 function
+** &loop/0 function
 This function has a receive in it
 #+BEGIN_SRC alchemist
-  def loop() do
-    receive do
-      {pid, :ping} ->
-        send pid, {self(), :pong}
-        loop()
-      {pid, :stop} ->
-        send pid, "Okkay I'll stop"
-      {pid, _} ->
-        send pid, {self(), "Dude..."}
-        loop()
-      _ -> loop()
+    def loop() do
+      receive do
+        {pid, :ping} ->
+          send pid, :pong
+          loop()
+        {pid, :stop} ->
+          send pid, "Okkay I'll stop"
+        {pid, :plox_mutate} ->
+          send pid, "ROAR!"
+          loop2()
+        {pid, _} ->
+          send pid, {self(), "Dude..."}
+          loop()
+        _ -> loop()
+      end
     end
-  end
 #+END_SRC
+* Some real stuff!
+Metex!!
+
+(@Cuwano swap again, but now to the Metex thing)
