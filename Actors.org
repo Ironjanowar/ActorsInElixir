@@ -23,7 +23,6 @@
 #+REVEAL_EXTRA_CSS: ./acm.css
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="EmacsFTW.">
 #+REVEAL_PLUGINS: (markdown notes zoom multiplex classList highlight)
-#+REVEAL_ROOT: file://./reveal.js
 
 #+OPTIONS: toc:nil
 # #+OPTIONS: reveal_single_file:t
