@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<title>The Actor Model</title>
+<title>The Actor Model in Elixir</title>
 <meta name="author" content="(@Cuwano)"/>
 <style type="text/css">
 .underline { text-decoration: underline; }
@@ -28,18 +28,18 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">The Actor Model</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-28 Tue 00:01</p>
+<section id="sec-title-slide"><h1 class="title">The Actor Model in Elixir</h1><h2 class="author">@Cuwano</h2><p class="date">Created: 2017-11-28 Tue 16:59</p>
 </section>
 
 <section>
-<section id="slide-orgd3e92c0">
-<h2 id="orgd3e92c0">Concurrency and Parallelism</h2>
+<section id="slide-orgdc8fcb4">
+<h2 id="orgdc8fcb4">Concurrency and Parallelism</h2>
 <p>
 What's all this?
 </p>
 </section>
-<section id="slide-org44af192">
-<h3 id="org44af192">Parallelism</h3>
+<section id="slide-orgdba09cb">
+<h3 id="orgdba09cb">Parallelism</h3>
 <p>
 Is basically processing things at the same time.
 </p>
@@ -51,8 +51,8 @@ Is basically processing things at the same time.
 </div>
 
 </section>
-<section id="slide-org8bc74b0">
-<h3 id="org8bc74b0">Concurrency</h3>
+<section id="slide-org23da8af">
+<h3 id="org23da8af">Concurrency</h3>
 <p>
 Process multiple things with a common resource.
 </p>
@@ -64,10 +64,33 @@ Process multiple things with a common resource.
 </div>
 
 </section>
+<section id="slide-org1105b3d">
+<h3 id="org1105b3d">Basic concurrency methods</h3>
+<ul>
+<li>Locks</li>
+<li>Semaphores</li>
+<li>Mutex</li>
+
+</ul>
+
+<p>
+And many more&#x2026;
+</p>
+
+</section>
+<section id="slide-org2c821f7">
+<h3 id="org2c821f7">Like Actors!</h3>
+
+<div class="figure">
+<p><img src="./data/like_actors.gif" alt="like_actors.gif" />
+</p>
+</div>
+
+</section>
 </section>
 <section>
-<section id="slide-org9de6a2b">
-<h2 id="org9de6a2b">What can an Actor do?</h2>
+<section id="slide-org9477175">
+<h2 id="org9477175">What can an Actor do?</h2>
 <ul>
 <li>Receive messages</li>
 <li>Sends messages</li>
@@ -76,46 +99,71 @@ Process multiple things with a common resource.
 
 </ul>
 </section>
-<section id="slide-org50e397c">
-<h3 id="org50e397c">Actor System</h3>
+<section id="slide-orgde9003a">
+<h3 id="orgde9003a">Actor System</h3>
 
 <div class="figure">
 <p><img src="./data/actors1.png" alt="actors1.png" />
 </p>
 </div>
 </section>
-<section id="slide-orgd5a1cf1">
-<h3 id="orgd5a1cf1">Mailbox</h3>
+<section id="slide-org056a5ef">
+<h3 id="org056a5ef">Mailbox</h3>
 <p>
 This means that it can only process one message at a time
 </p>
 </section>
-<section id="slide-orgaced8ed">
-<h3 id="orgaced8ed">What do you mean by "changing its own behavior"?</h3>
+<section id="slide-org66529ab">
+<h3 id="org66529ab">What do you mean by "changing its own behavior"?</h3>
+</section>
+<section id="slide-orgf50fc11">
+<h3 id="orgf50fc11">Furrr example</h3>
+
+<div class="figure">
+<p><img src="./data/cat1.png" alt="cat1.png" />
+</p>
+</div>
+</section>
+<section id="slide-org6c7cd1e">
+<h3 id="org6c7cd1e">Furrr example</h3>
+
+<div class="figure">
+<p><img src="./data/cat2.png" alt="cat2.png" />
+</p>
+</div>
+</section>
+<section id="slide-org77027ee">
+<h3 id="org77027ee">Furrr example</h3>
+
+<div class="figure">
+<p><img src="./data/cat3.png" alt="cat3.png" />
+</p>
+</div>
+
 </section>
 </section>
 <section>
-<section id="slide-orge1a6c6e">
-<h2 id="orge1a6c6e">Let's see an example!</h2>
-<div class="outline-text-2" id="text-orge1a6c6e">
+<section id="slide-orgcdc0bdf">
+<h2 id="orgcdc0bdf">Lets see some code!</h2>
+<div class="outline-text-2" id="text-orgcdc0bdf">
 </div>
 </section>
-<section id="slide-org00bad86">
-<h3 id="org00bad86">Everything in Elixir/Erlang is an Actor</h3>
+<section id="slide-orgcdb7551">
+<h3 id="orgcdb7551">Everything in Elixir/Erlang is an Actor</h3>
 </section>
-<section id="slide-orgd3c3d81">
-<h3 id="orgd3c3d81">So let's create an Actor!</h3>
+<section id="slide-org2ca5827">
+<h3 id="org2ca5827">So lets create an Actor!</h3>
 
 <div class="figure">
 <p><img src="./data/elixir_example1.png" alt="elixir_example1.png" />
 </p>
 </div>
 </section>
-<section id="slide-org0cd96df">
-<h3 id="org0cd96df">What's all this?!</h3>
+<section id="slide-orgdcbb2f2">
+<h3 id="orgdcbb2f2">What's all this?!</h3>
 </section>
-<section id="slide-org38bd5c3">
-<h3 id="org38bd5c3">&amp;spawn/1</h3>
+<section id="slide-org96360e8">
+<h3 id="org96360e8">&amp;spawn/1</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" >spawn(fn -> :ok end)
@@ -128,8 +176,8 @@ spawn(fn -> IO.puts "Patata" end)
 Creates a process that executes a given function
 </p>
 </section>
-<section id="slide-org1ed4329">
-<h3 id="org1ed4329">receive</h3>
+<section id="slide-orgf0d4906">
+<h3 id="orgf0d4906">receive</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" >receive do
@@ -138,8 +186,8 @@ end
 </code></pre>
 </div>
 </section>
-<section id="slide-orga151e6c">
-<h3 id="orga151e6c">&amp;send/2</h3>
+<section id="slide-orgf89494a">
+<h3 id="orgf89494a">&amp;send/2</h3>
 <div class="org-src-container">
 
 <pre><code class="alchemist" ># send(who, what)
@@ -150,10 +198,10 @@ send(pid, {self(), :ping})
 </code></pre>
 </div>
 </section>
-<section id="slide-orga4ad244">
-<h3 id="orga4ad244">&amp;flush/0</h3>
+<section id="slide-org54f8ba3">
+<h3 id="org54f8ba3">&amp;flush/0</h3>
 <p>
-Let's see our inbox
+Lets see our inbox
 </p>
 
 
@@ -162,16 +210,16 @@ Let's see our inbox
 </p>
 </div>
 </section>
-<section id="slide-org1740658">
-<h3 id="org1740658">iex is an Actor too!!</h3>
+<section id="slide-org2f5e947">
+<h3 id="org2f5e947">iex is an Actor too!!</h3>
 
 <div class="figure">
 <p><img src="./data/iex_actor.png" alt="iex_actor.png" />
 </p>
 </div>
 </section>
-<section id="slide-orgd055715">
-<h3 id="orgd055715">EVERYTHING IS AN ACTOR!</h3>
+<section id="slide-orgae54c0d">
+<h3 id="orgae54c0d">EVERYTHING IS AN ACTOR!</h3>
 <p>
 That means that we can message anything!
 </p>
@@ -186,15 +234,15 @@ The only thing that we need is a "mailbox direction" aka THE PROCESS ID
 </section>
 </section>
 <section>
-<section id="slide-orgeddf255">
-<h2 id="orgeddf255">So&#x2026; a more interesting process</h2>
+<section id="slide-org4055339">
+<h2 id="org4055339">So&#x2026; a more interesting process</h2>
 <p>
 (@Cuwano swap to Emacs)
 </p>
 
 </section>
-<section id="slide-org8a84c34">
-<h3 id="org8a84c34">Let's play with this little friend here!</h3>
+<section id="slide-org1889751">
+<h3 id="org1889751">Lets play with this little friend here!</h3>
 <p>
 First of all there is a &amp;start/0 function that rings a bell
 </p>
@@ -208,8 +256,8 @@ end
 </code></pre>
 </div>
 </section>
-<section id="slide-orga3a4389">
-<h3 id="orga3a4389">&amp;loop/0 function</h3>
+<section id="slide-org8790436">
+<h3 id="org8790436">&amp;loop/0 function</h3>
 <p>
 This function has a receive in it
 </p>
@@ -236,8 +284,8 @@ end
 </section>
 </section>
 <section>
-<section id="slide-org558d343">
-<h2 id="org558d343">Some real stuff!</h2>
+<section id="slide-orgf524d82">
+<h2 id="orgf524d82">Some real stuff!</h2>
 <p>
 Metex!!
 </p>
@@ -248,8 +296,8 @@ Metex!!
 </section>
 </section>
 <section>
-<section id="slide-orge1bca04">
-<h2 id="orge1bca04">Moar examples</h2>
+<section id="slide-org2403960">
+<h2 id="org2403960">Moar examples</h2>
 <p>
 @daily_list_bot ♥
 </p>
@@ -259,6 +307,17 @@ Metex!!
 <p><img src="./data/daily_bot.png" alt="daily_bot.png" />
 </p>
 </div>
+</section>
+</section>
+<section>
+<section id="slide-orgbd859b6">
+<h2 id="orgbd859b6">What now?</h2>
+<ul>
+<li><i>"Elixir Lang official web"</i> - <a href="http://elixir-lang.github.io/">http://elixir-lang.github.io/</a></li>
+<li><i>"Hewitt, Meijer and Szyperski: The Actor Model (everything you wanted to know&#x2026;)"</i> - Search it on YouTube</li>
+<li><i>"The Little Elixir &amp; OTP Book"</i> - Benjamin Tan Wei Hao</li>
+
+</ul>
 </section>
 </section>
 </div>

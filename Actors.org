@@ -1,4 +1,4 @@
-#+Title: The Actor Model
+#+Title: The Actor Model in Elixir
 #+Author: @Cuwano
 #+Email:SexyACM@BestAsocEUW.io
 
@@ -42,6 +42,16 @@ Process multiple things with a common resource.
 
 [[./data/concurrency.png]]
 
+** Basic concurrency methods
+- Locks
+- Semaphores
+- Mutex
+
+And many more...
+
+** Like Actors!
+[[./data/like_actors.gif]]
+
 * What can an Actor do?
 - Receive messages
 - Sends messages
@@ -52,9 +62,16 @@ Process multiple things with a common resource.
 ** Mailbox
 This means that it can only process one message at a time
 ** What do you mean by "changing its own behavior"?
-* Let's see an example!
+** Furrr example
+[[./data/cat1.png]]
+** Furrr example
+[[./data/cat2.png]]
+** Furrr example
+[[./data/cat3.png]]
+
+* Lets see some code!
 ** Everything in Elixir/Erlang is an Actor
-** So let's create an Actor!
+** So lets create an Actor!
 [[./data/elixir_example1.png]]
 ** What's all this?!
 ** &spawn/1
@@ -80,7 +97,7 @@ Creates a process that executes a given function
   send(pid, {self(), :ping})
 #+END_SRC
 ** &flush/0
-Let's see our inbox
+Lets see our inbox
 
 [[./data/wait_what.gif]]
 ** iex is an Actor too!!
@@ -94,7 +111,7 @@ The only thing that we need is a "mailbox direction" aka THE PROCESS ID
 * So... a more interesting process
 (@Cuwano swap to Emacs)
 
-** Let's play with this little friend here!
+** Lets play with this little friend here!
 First of all there is a &start/0 function that rings a bell
 #+BEGIN_SRC alchemist
   def start() do
@@ -131,3 +148,7 @@ Metex!!
 @daily_list_bot ♥
 
 [[./data/daily_bot.png]]
+* What now?
+- /"Elixir Lang official web"/ - http://elixir-lang.github.io/
+- /"Hewitt, Meijer and Szyperski: The Actor Model (everything you wanted to know...)"/ - Search it on YouTube
+- /"The Little Elixir & OTP Book"/ - Benjamin Tan Wei Hao
